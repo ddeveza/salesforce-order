@@ -1,7 +1,7 @@
-import { Dialog } from "./ui/dialog";
+import { DialogContent } from "./ui/dialog";
 
 const AddOrderForm = () => {
-  return <Dialog></Dialog>;
+  return <DialogContent></DialogContent>;
 };
 
 export default AddOrderForm;
