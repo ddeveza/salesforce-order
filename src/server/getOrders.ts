@@ -11,7 +11,7 @@ interface Order {
 }
 
 export async function getOrdersConsumerType() {
-  const query = "SELECT Id, Name, EffectiveDate,OrderNumber FROM Order WHERE RecordTypeId = '012Hs000001msx7IAA'"; //RecordTypId =012Hs000001msx7IAA this Id is for Order-Consumer
+  const query = "SELECT Id, Name, EffectiveDate,OrderNumber FROM Order WHERE RecordTypeId = '012Hs000001msx7IAA' ORDER BY OrderNumber DESC"; //RecordTypId =012Hs000001msx7IAA this Id is for Order-Consumer
   try {
     const { data } = await api.get("data/v56.0/query/", {
       params: {
@@ -82,12 +82,7 @@ export async function createCart(name: string) {
     data: data,
   };
 
-  axios
-    .request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  let { data: result, status } = await axios.request(config);
+  console.log({ result, status });
+  return result?.totalSize > 0;
 }

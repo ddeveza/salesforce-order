@@ -8,7 +8,7 @@ export type OrderType = {
 };
 
 const OrderList = ({ orders }: { orders: OrderType[] }) => {
-  if (!orders.length) {
+  if (!orders?.length) {
     return <div>No Order found...</div>;
   }
 
