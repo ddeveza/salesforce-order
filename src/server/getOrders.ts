@@ -8,7 +8,12 @@ export async function getOrdersConsumerType() {
         q: query,
       },
     });
-    return data.records;
+    return data.records.map((order: any) => ({
+      orderNumber: order.OrderNumber,
+      name: order.Name,
+      startDate: order.EffectiveDate,
+      id: order.Id,
+    }));
   } catch (error) {
     console.log({ error });
   }
@@ -17,7 +22,11 @@ export async function getOrdersConsumerType() {
 export async function getProductsByCartId(cartId: string) {
   try {
     const { data } = await api.get(`apexrest/vlocity_cmt/v2/cpq/carts/${cartId}/products`);
-    return data.records;
+    return data.records.map((product: any) => ({
+      name: product.name,
+      value: product.UnitPrice.value,
+      id: product.productId,
+    }));
   } catch (error) {
     console.log({ error });
   }
