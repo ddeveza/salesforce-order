@@ -1,14 +1,20 @@
 import { api } from "@/lib/axios";
+interface Order {
+  Id: string;
+  Name: string;
+  EffectiveDate: string;
+  OrderNumber: string;
+}
 
 export async function getOrdersConsumerType() {
-  const query = "SELECT Id, Name, Status, AccountId, EffectiveDate,OrderNumber FROM Order WHERE RecordTypeId = '012Hs000001msx7IAA'"; //RecordTypId =012Hs000001msx7IAA this Id is for Order-Consumer
+  const query = "SELECT Id, Name, EffectiveDate,OrderNumber FROM Order WHERE RecordTypeId = '012Hs000001msx7IAA'"; //RecordTypId =012Hs000001msx7IAA this Id is for Order-Consumer
   try {
     const { data } = await api.get("data/v56.0/query/", {
       params: {
         q: query,
       },
     });
-    return data.records.map((order: any) => ({
+    return data.records.map((order: Order) => ({
       orderNumber: order.OrderNumber,
       name: order.Name,
       startDate: order.EffectiveDate,
