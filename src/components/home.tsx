@@ -1,4 +1,5 @@
 import { getOrdersConsumerType } from "@/server/getOrders";
+import AddOrder from "./add-order";
 import OrderList from "./order-list";
 
 export default async function HomePage() {
@@ -6,6 +7,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <AddOrder />
       <OrderList orders={orders} />;
     </>
   );
