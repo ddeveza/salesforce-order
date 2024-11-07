@@ -4,9 +4,7 @@ import { ProductType } from "@/components/product-list";
 import { getProductsByCartId } from "@/server/getOrders";
 
 type ProductsType = {
-  params: {
-    cartId: string;
-  };
+  params: Promise<{ cartId: string }>; // Ensure params is a Promise
 };
 
 const ProductsPage = async ({ params }: ProductsType) => {
@@ -14,7 +12,11 @@ const ProductsPage = async ({ params }: ProductsType) => {
   const products = await getProductsByCartId(cartId);
 
   if (!products?.length) {
-    return <div className="flex items-center justify-center">No available products.</div>;
+    return (
+      <Modal>
+        <div className="flex items-center justify-center">No available products.</div>{" "}
+      </Modal>
+    );
   }
 
   return (
