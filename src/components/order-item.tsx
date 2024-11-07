@@ -1,7 +1,5 @@
-import { DialogTrigger } from "@radix-ui/react-dialog";
-
+import Link from "next/link";
 import { OrderType } from "./order-list";
-import ProductModal from "./product-modal";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Dialog } from "./ui/dialog";
@@ -16,12 +14,11 @@ const OrderItem = ({ order }: { order: OrderType }) => {
           <CardDescription>Order Start Date: {order?.startDate}</CardDescription>
         </CardHeader>
         <CardContent>
-          <DialogTrigger asChild>
-            <Button variant="outline">View List of Product</Button>
-          </DialogTrigger>
+          <Button asChild>
+            <Link href={`/products/${order.id}`}>View List of Product</Link>
+          </Button>
         </CardContent>
       </Card>
-      <ProductModal id={order.id} />
     </Dialog>
   );
 };
