@@ -14,7 +14,11 @@ const OrderItem = ({ order }: { order: OrderType }) => {
           <CardDescription>Order Start Date: {order?.startDate}</CardDescription>
         </CardHeader>
         <CardContent>
-          <Button asChild>
+          <Button
+            variant="outline"
+            className="font-semibold"
+            asChild
+          >
             <Link href={`/products/${order.id}`}>View List of Product</Link>
           </Button>
         </CardContent>
