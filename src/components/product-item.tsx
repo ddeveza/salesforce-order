@@ -1,7 +1,7 @@
 "use client";
 
 import { useToast } from "@/hooks/use-toast";
-import { addToCart } from "@/server/getOrders";
+import { addToCart } from "@/server/api";
 import { useTransition } from "react";
 import { ProductType } from "./product-list";
 import { Button } from "./ui/button";

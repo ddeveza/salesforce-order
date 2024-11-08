@@ -1,4 +1,4 @@
-import { getOrdersConsumerType } from "@/server/getOrders";
+import { getOrdersConsumerType } from "@/server/api";
 import AddOrder from "./add-order";
 import OrderList from "./order-list";
 

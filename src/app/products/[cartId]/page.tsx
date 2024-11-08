@@ -1,7 +1,7 @@
 import { Modal } from "@/components/modal";
 import ProductItem from "@/components/product-item";
 import { ProductType } from "@/components/product-list";
-import { getProductsByCartId } from "@/server/getOrders";
+import { getProductsByCartId } from "@/server/api";
 
 type ProductsType = {
   params: Promise<{ cartId: string }>; // Ensure params is a Promise

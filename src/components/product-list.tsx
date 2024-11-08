@@ -1,4 +1,4 @@
-import { getProductsByCartId } from "@/server/getOrders";
+import { getProductsByCartId } from "@/server/api";
 import ProductItem from "./product-item";
 
 export type ProductType = {

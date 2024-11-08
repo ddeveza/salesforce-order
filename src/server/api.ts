@@ -107,3 +107,31 @@ export async function addToCart(items: any) {
   console.log({ result, status });
   return result?.totalSize > 0;
 }
+
+export async function getCartSummary(cartId: string) {
+  try {
+    const { data } = await api.get(`apexrest/vlocity_cmt/v2/cpq/carts/${cartId}`);
+    const { EffectiveOneTimeTotal__c, EffectiveRecurringTotal__c } = data.records[0].details.records[0];
+    return {
+      oneTimeCharges: EffectiveOneTimeTotal__c,
+      recurringTotal: EffectiveRecurringTotal__c,
+    };
+  } catch (error) {
+    console.log({ error });
+  }
+}
+
+export async function getCartItems(cartId: string) {
+  try {
+    const { data } = await api.get(`apexrest/vlocity_cmt/v2/cpq/carts/${cartId}/items`);
+    return data.records?.map((cart: any) => ({
+      id: cart.Id.value,
+      name: cart.Name,
+      quantity: cart.Quantity.value,
+      oneTimeCharges: cart.vlocity_cmt__OneTimeTotal__c.value,
+      recurringTotal: cart.vlocity_cmt__EffectiveRecurringTotal__c.value,
+    }));
+  } catch (error) {
+    console.log({ error });
+  }
+}

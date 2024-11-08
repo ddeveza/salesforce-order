@@ -14,13 +14,24 @@ const OrderItem = ({ order }: { order: OrderType }) => {
           <CardDescription>Order Start Date: {order?.startDate}</CardDescription>
         </CardHeader>
         <CardContent>
-          <Button
-            variant="outline"
-            className="font-semibold"
-            asChild
-          >
-            <Link href={`/products/${order.id}`}>View List of Product</Link>
-          </Button>
+          <div className="flex items-center justify-between">
+            <Button
+              variant="outline"
+              className="font-semibold"
+              size="sm"
+              asChild
+            >
+              <Link href={`/products/${order.id}`}>View Products </Link>
+            </Button>
+            <Button
+              variant="link"
+              className="font-semibold"
+              size="sm"
+              asChild
+            >
+              <Link href={`/cart/${order.id}`}>View Carts</Link>
+            </Button>
+          </div>
         </CardContent>
       </Card>
     </Dialog>
