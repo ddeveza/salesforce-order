@@ -5,6 +5,7 @@ export type ProductType = {
   name: string;
   value: string;
   id: string;
+  addToCart: any;
 };
 
 async function ProductList({ id }: { id: string }) {

@@ -36,6 +36,7 @@ export async function getProductsByCartId(cartId: string) {
       name: product.name,
       value: product.UnitPrice.value,
       id: product.productId,
+      addToCart: product.actions.addtocart.rest.params,
     }));
   } catch (error) {
     console.log({ error });
@@ -75,6 +76,26 @@ export async function createCart(name: string) {
     method: "post",
     maxBodyLength: Infinity,
     url: "https://st1728476136997.my.salesforce.com/services/apexrest/vlocity_cmt/v2/carts",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    data: data,
+  };
+
+  let { data: result, status } = await axios.request(config);
+  console.log({ result, status });
+  return result?.totalSize > 0;
+}
+
+export async function addToCart(items: any) {
+  const token = (await get("token"))?.value;
+  let data = JSON.stringify(items);
+
+  let config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: `https://st1728476136997.my.salesforce.com/services/apexrest/vlocity_cmt/v2/cpq/carts/${items.cartId}/items`,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
