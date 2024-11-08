@@ -31,8 +31,6 @@ const AddOrderForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof orderSchema>) => {
-    console.log({ values });
-
     const data = await createCart(values.name);
 
     toast({

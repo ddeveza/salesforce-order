@@ -8,7 +8,6 @@ import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 
 const ProductItem = ({ product }: { product: ProductType }) => {
-  console.log({ product });
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
 
