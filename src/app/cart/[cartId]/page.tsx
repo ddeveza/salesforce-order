@@ -1,6 +1,9 @@
 import CartDetails from "@/components/cart-details";
 import CartSummary from "@/components/cart-summary";
+import { Button } from "@/components/ui/button";
 import { getCartItems, getCartSummary } from "@/server/api";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 type CartPageType = {
   params: Promise<{
@@ -14,7 +17,22 @@ export default async function CartSummaryPage({ params }: CartPageType) {
   const cartItems = await getCartItems(cartId);
 
   if (!cartItems?.length) {
-    return <div className="flex items-center justify-center">No available items in the cart.</div>;
+    return (
+      <div className="flex flex-col items-center   mx-auto h-screen">
+        <div>No available item/s in the cart.</div>
+        <div>
+          <Button
+            asChild
+            variant="ghost"
+          >
+            <Link href="/">
+              <ArrowLeft />
+              Back to main page
+            </Link>
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (

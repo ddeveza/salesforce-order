@@ -1,10 +1,28 @@
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 const CartSummary = ({ cartSummary }: { cartSummary: any }) => {
   return (
     <Card className="shadow-lg">
       <CardHeader>
-        <CardTitle className="text-lg">Cart Summary:</CardTitle>
+        <CardTitle className="text-lg">
+          <div className="flex items-center justify-between">
+            <div>Cart Summary</div>
+            <div>
+              <Button
+                asChild
+                variant="ghost"
+              >
+                <Link href="/">
+                  <ArrowLeft />
+                  Back
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </CardTitle>
         <CardDescription>Total amount of charges.</CardDescription>
       </CardHeader>
       <CardContent>
